@@ -5,8 +5,9 @@
     "permissions": [
         "storage",
         "activeTab",
-        "https://adventofcode.com/*",
-        "https://5vssg9k3ui.execute-api.us-east-1.amazonaws.com/*"
+        "tabs",
+        "https://adventofcode.com/",
+        "https://5vssg9k3ui.execute-api.us-east-1.amazonaws.com/"
     ],
     "background": {
         "scripts": ["background.js"],
@@ -22,5 +23,10 @@
         "48": "images/aoc48.png",
         "128": "images/aoc128.png"
     },
-    "manifest_version": 2
+    "manifest_version": 2,
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "{aaf1b8ea-aca7-4fbe-aa96-77ecbfa4854c}"
+        }
+    }
 }
