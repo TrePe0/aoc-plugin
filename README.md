@@ -11,10 +11,11 @@ Plugin for Chrome and Firefox to log time when the adventofcode.com task was fir
 - On [chrome://extensions/](chrome://extensions/) allow developer mode
 - Click on "Load unpacked" button and choose directory from above
 
-### Fiefox 
+### Firefox
 - Create directory with all the files
-- On [about:addons](about:addons) click cog icon and choose Install Add-on from file...
-- Choose manifest.json from above directory
+- On [about:addons](about:addons) click cog icon and choose Debug Add-ons
+- Click on "Load Temporary Add-on" button and choose manifest.json from above directory
+- **Restarting Firefox will erase the plugin**
 
 License
 ----
