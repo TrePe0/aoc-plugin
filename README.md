@@ -12,10 +12,8 @@ Plugin for Chrome and Firefox to log time when the adventofcode.com task was fir
 - Click on "Load unpacked" button and choose directory from above
 
 ### Firefox
-- Create directory with all the files
-- On [about:addons](about:addons) click cog icon and choose Debug Add-ons
-- Click on "Load Temporary Add-on" button and choose manifest.json from above directory
-- **Restarting Firefox will erase the plugin**
+- Download xpi file from [Releases](https://github.com/TrePe0/aoc-plugin/releases)
+- On [about:addons](about:addons) click cog icon and choose Install Add-on From File...
 
 License
 ----
