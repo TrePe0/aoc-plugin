@@ -1,6 +1,6 @@
 # aoc-plugin
   
-Plugin for Chrome and Firefox to log time when the adventofcode.com task was first opened (part 1 and part 2 separately)
+Plugin for Chrome, Firefox and Edge to log time when the adventofcode.com task was first opened (part 1 and part 2 separately)
 - using [aoc-redirect](https://github.com/matushorvath/aoc-redirect/)
 - in local storage
 
@@ -14,6 +14,11 @@ Plugin for Chrome and Firefox to log time when the adventofcode.com task was fir
 ### Firefox
 - Download xpi file from [Releases](https://github.com/TrePe0/aoc-plugin/releases)
 - On [about:addons](about:addons) click cog icon and choose Install Add-on From File...
+
+### Edge
+- Create directory with all the files
+- On [edge://extensions/](edge://extensions/) allow developer mode
+- Click on "Load unpacked" button and choose directory from above
 
 License
 ----
