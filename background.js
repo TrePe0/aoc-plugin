@@ -16,7 +16,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
                     if (result.times[year][day] === undefined) result.times[year][day] = {};
                     if (result.times[year][day][part] === undefined) {
                         if (userName) {
-                            var url = 'https://5vssg9k3ui.execute-api.us-east-1.amazonaws.com/Prod/'+year+'/day/'+day+'?part='+part+'&name='+encodeURIComponent(userName);
+                            var url = 'https://rb5ncgzaxj.execute-api.eu-central-1.amazonaws.com/Prod/'+year+'/day/'+day+'?part='+part+'&name='+encodeURIComponent(userName);
                             var xhr = new XMLHttpRequest();
                             xhr.open("GET", url);
                             xhr.send();
