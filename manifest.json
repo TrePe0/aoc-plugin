@@ -7,7 +7,7 @@
         "activeTab",
         "tabs",
         "https://adventofcode.com/",
-        "https://5vssg9k3ui.execute-api.us-east-1.amazonaws.com/"
+        "https://rb5ncgzaxj.execute-api.eu-central-1.amazonaws.com/"
     ],
     "background": {
         "scripts": ["background.js"],
