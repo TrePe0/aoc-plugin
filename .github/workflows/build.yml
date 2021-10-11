@@ -1,0 +1,56 @@
+name: Test and Package
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+env:
+  FORCE_COLOR: 1
+  TERM: xterm-color
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '14'
+      #     cache: 'npm'
+
+      - name: Install web-ext
+        run: npm install --global web-ext
+
+      - name: Run web-ext lint
+        run: web-ext lint
+
+  firefox:
+    name: Package for Firefox
+    runs-on: ubuntu-20.04
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '14'
+      #     cache: 'npm'
+
+      - name: Install web-ext
+        run: npm install --global web-ext
+
+      - name: Run web-ext build
+        run: web-ext --filename aoc_plugin_fx.xpi build
+
+      - name: Store artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: aoc_plugin_fx
+          path: web-ext-artifacts/aoc_plugin_fx.xpi
+          if-no-files-found: error
