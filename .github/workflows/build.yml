@@ -27,6 +27,7 @@ jobs:
   firefox:
     name: Package for Firefox
     runs-on: ubuntu-20.04
+    needs: test
     if: github.ref == 'refs/heads/master'
 
     steps:
