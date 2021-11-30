@@ -18,11 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '14'
-      #     cache: 'npm'
-
       - name: Install web-ext
         run: npm install --global web-ext
 
@@ -37,20 +32,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '14'
-      #     cache: 'npm'
-
       - name: Install web-ext
         run: npm install --global web-ext
 
       - name: Run web-ext build
-        run: web-ext --filename aoc_plugin_fx.xpi build
+        run: |
+          VERSION=$(<manifest.json jq -r .version)
+          web-ext --overwrite-dest --filename aoc_plugin-${VERSION}-fx.xpi build
+
+      - name: Run web-ext sign
+        env:
+          MOZILLA_API_KEY: ${{ secrets.MOZILLA_API_KEY }}
+          MOZILLA_API_SECRET:  ${{ secrets.MOZILLA_API_SECRET }}
+        run: web-ext --api-key $MOZILLA_API_KEY --api-secret $MOZILLA_API_SECRET sign
 
       - name: Store artifact
         uses: actions/upload-artifact@v2
         with:
           name: aoc_plugin_fx
-          path: web-ext-artifacts/aoc_plugin_fx.xpi
+          path: web-ext-artifacts/aoc_plugin-*-fx.xpi
           if-no-files-found: error

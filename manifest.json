@@ -1,6 +1,6 @@
 {
     "name": "AoC Time Logger",
-    "version": "1.0",
+    "version": "2.0.2",
     "description": "Logs time when user opens the task",
     "permissions": [
         "storage",
@@ -26,7 +26,7 @@
     "manifest_version": 2,
     "browser_specific_settings": {
         "gecko": {
-          "id": "{aaf1b8ea-aca7-4fbe-aa96-77ecbfa4854c}"
+          "id": "{7d4b8dd6-c679-4c9a-a323-e06eaf4a663d}"
         }
     }
 }
