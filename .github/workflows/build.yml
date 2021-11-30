@@ -27,6 +27,7 @@ jobs:
   firefox:
     name: Package for Firefox
     runs-on: ubuntu-20.04
+    needs: test
     if: github.ref == 'refs/heads/master'
 
     steps:
@@ -36,19 +37,17 @@ jobs:
         run: npm install --global web-ext
 
       - name: Run web-ext build
-        run: |
-          VERSION=$(<manifest.json jq -r .version)
-          web-ext --overwrite-dest --filename aoc_plugin-${VERSION}-fx.xpi build
+        run: web-ext build
 
       - name: Run web-ext sign
         env:
           MOZILLA_API_KEY: ${{ secrets.MOZILLA_API_KEY }}
           MOZILLA_API_SECRET:  ${{ secrets.MOZILLA_API_SECRET }}
-        run: web-ext --api-key $MOZILLA_API_KEY --api-secret $MOZILLA_API_SECRET sign
+        run: web-ext sign --api-key $MOZILLA_API_KEY --api-secret $MOZILLA_API_SECRET
 
       - name: Store artifact
         uses: actions/upload-artifact@v2
         with:
-          name: aoc_plugin_fx
-          path: web-ext-artifacts/aoc_plugin-*-fx.xpi
+          name: aoc_time_logger
+          path: web-ext-artifacts/aoc_time_logger-*-an+fx.xpi
           if-no-files-found: error
