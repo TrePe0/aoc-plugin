@@ -1,0 +1,53 @@
+name: Test and Package
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+env:
+  FORCE_COLOR: 1
+  TERM: xterm-color
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install web-ext
+        run: npm install --global web-ext
+
+      - name: Run web-ext lint
+        run: web-ext lint
+
+  firefox:
+    name: Package for Firefox
+    runs-on: ubuntu-20.04
+    needs: test
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install web-ext
+        run: npm install --global web-ext
+
+      - name: Run web-ext build
+        run: web-ext build
+
+      - name: Run web-ext sign
+        env:
+          MOZILLA_API_KEY: ${{ secrets.MOZILLA_API_KEY }}
+          MOZILLA_API_SECRET:  ${{ secrets.MOZILLA_API_SECRET }}
+        run: web-ext sign --api-key $MOZILLA_API_KEY --api-secret $MOZILLA_API_SECRET
+
+      - name: Store artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: aoc_time_logger
+          path: web-ext-artifacts/aoc_time_logger-*-an+fx.xpi
+          if-no-files-found: error

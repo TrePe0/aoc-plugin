@@ -1,6 +1,6 @@
 {
     "name": "AoC Time Logger",
-    "version": "1.0",
+    "version": "2.0.6",
     "description": "Logs time when user opens the task",
     "permissions": [
         "storage",
