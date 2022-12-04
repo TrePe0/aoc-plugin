@@ -1,17 +1,18 @@
 {
     "name": "AoC Time Logger",
-    "version": "2.0.6",
+    "version": "2.1.0",
     "description": "Logs time when user opens the task",
     "permissions": [
         "storage",
         "activeTab",
-        "tabs",
+        "tabs"
+    ],
+    "host_permissions": [
         "https://adventofcode.com/",
         "https://rb5ncgzaxj.execute-api.eu-central-1.amazonaws.com/"
     ],
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false
+        "service_worker": "background.js"
     },
     "content_scripts": [{
         "matches": ["https://adventofcode.com/*"],
@@ -23,10 +24,10 @@
         "48": "images/aoc48.png",
         "128": "images/aoc128.png"
     },
-    "manifest_version": 2,
+    "manifest_version": 3,
     "browser_specific_settings": {
         "gecko": {
-          "id": "{aaf1b8ea-aca7-4fbe-aa96-77ecbfa4854c}"
+            "id": "{aaf1b8ea-aca7-4fbe-aa96-77ecbfa4854c}"
         }
     }
 }
