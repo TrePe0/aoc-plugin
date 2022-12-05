@@ -1,6 +1,6 @@
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete' && tab.url) {
-        var matches = tab.url.match(/\.com\/([0-9]{4})\/day\/([0-9]+)$/);
+        var matches = tab.url.match(/\.com\/([0-9]{4})\/day\/([0-9]+)/);
         var timestamp = Math.floor(Date.now() / 1000);
         if (matches !== null) {
             var year = matches[1];
