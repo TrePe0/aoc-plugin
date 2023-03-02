@@ -1,0 +1,36 @@
+{
+    "name": "aoc-plugin",
+    "version": "1.0.0",
+    "description": "Advent of Code Plugin",
+    "scripts": {
+        "eslint": "eslint .",
+        "eslint-fix": "eslint --fix .",
+        "web-ext-lint": "npm run prep-firefox && web-ext lint",
+        "test": "npm run eslint && npm run web-ext-lint",
+        "prep-chrome": "cp manifest-chrome.json manifest.json",
+        "prep-firefox": "cp manifest-firefox.json manifest.json"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/TrePe0/aoc-plugin"
+    },
+    "author": "Peter Trebaticky <github.10.trepe@spamgourmet.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^8.33.0",
+        "web-ext": "^7.5.0"
+    },
+    "webExt": {
+        "artifactsDir": "output",
+        "ignoreFiles": ["*.sh", "manifest-*.json", "package*.json"],
+        "build": {
+            "overwriteDest": true
+        },
+        "lint": {
+            "selfHosted": true
+        }
+    },
+    "buildChrome": {
+        "files": ["*.js", "images/*", "manifest.json", "README.md"]
+    }
+}

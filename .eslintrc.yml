@@ -1,0 +1,12 @@
+env:
+  browser: true
+  webextensions: true
+  es2020: true
+extends:
+  - eslint:recommended
+rules:
+  indent: [error, 4]
+  no-shadow: error
+  no-unused-vars: [error, { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }]
+  semi: error
+  strict: error
