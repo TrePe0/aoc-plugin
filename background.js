@@ -22,7 +22,13 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
                         part: Number(part),
                         name: userName
                     };
-                    const response = await fetch(aocBotUrl, { method: 'post', body: JSON.stringify(body) });
+                    const response = await fetch(aocBotUrl, {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    });
                     console.log(response);
                 }
 
