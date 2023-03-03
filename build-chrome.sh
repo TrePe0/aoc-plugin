@@ -2,6 +2,8 @@
 
 set -e
 
+mkdir -p output
+
 VERSION=$(jq -r .version manifest.json)
 FILES=$(jq -r .buildChrome.files[] package.json)
 

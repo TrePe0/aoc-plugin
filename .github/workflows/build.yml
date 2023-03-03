@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: aoc_time_logger_firefox
-          path: output/aoc_time_logger*-an+fx.xpi
+          path: output/*.xpi
           if-no-files-found: error
 
   chrome:
@@ -77,5 +77,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: aoc_time_logger_chrome
-          path: output/aoc_time_logger*-chrome.zip
+          path: output/aoc_time_logger-*-chrome.zip
           if-no-files-found: error
