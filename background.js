@@ -9,7 +9,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
             const [, year, day] = matches;
             const { userName, part, error } = await chrome.tabs.sendMessage(tab.id, { text: 'get_user_name' });
             if (error) return;
-            let { times } = await chrome.storage.sync.get(['aoc_times']);
+            let { aoc_times: times } = await chrome.storage.sync.get(['aoc_times']);
             if (times === undefined) times = {};
             if (times[year] === undefined) times[year] = {};
             if (times[year][day] === undefined) times[year][day] = {};
