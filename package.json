@@ -7,8 +7,8 @@
         "eslint-fix": "eslint --fix .",
         "web-ext-lint": "npm run prep-firefox && web-ext lint",
         "test": "npm run eslint && npm run web-ext-lint",
-        "prep-chrome": "cp manifest-chrome.json manifest.json",
-        "prep-firefox": "cp manifest-firefox.json manifest.json"
+        "prep-chrome": "jq '.common*.chrome' manifest.input.json > manifest.json",
+        "prep-firefox": "jq '.common*.firefox' manifest.input.json > manifest.json"
     },
     "repository": {
         "type": "git",
