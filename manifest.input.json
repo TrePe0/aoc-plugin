@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "AoC Time Logger",
-        "version": "2.1.8",
+        "version": "2.1.9",
         "description": "Logs time when user opens the task",
         "content_scripts": [{
             "matches": ["https://adventofcode.com/*"],
