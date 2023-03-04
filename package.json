@@ -22,7 +22,7 @@
     },
     "webExt": {
         "artifactsDir": "output",
-        "ignoreFiles": ["*.sh", "manifest-*.json", "package*.json"],
+        "ignoreFiles": ["*.sh", "manifest.input.json", "package*.json"],
         "build": {
             "overwriteDest": true
         },
