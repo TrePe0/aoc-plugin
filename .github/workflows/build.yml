@@ -82,6 +82,6 @@ jobs:
       - name: Store artifact
         uses: actions/upload-artifact@v3
         with:
-          name: aoc_time_logger_chrome
-          path: output/aoc_time_logger-*-chrome.zip
+          name: aoc_time_logger_chrome_edge
+          path: output/aoc_time_logger-*-chrome-edge.zip
           if-no-files-found: error
