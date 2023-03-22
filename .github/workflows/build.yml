@@ -5,10 +5,7 @@ on:
   push:
     branches:
       - master
-
-env:
-  FORCE_COLOR: 1
-  TERM: xterm-color
+  workflow_dispatch:
 
 jobs:
   test:
@@ -16,13 +13,16 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Install web-ext
-        run: npm install --global web-ext
+      - name: Install packages
+        run: npm install
+
+      - name: Run eslint
+        run: npm run eslint
 
       - name: Run web-ext lint
-        run: web-ext lint
+        run: npm run web-ext-lint
 
   firefox:
     name: Package for Firefox
@@ -31,23 +31,57 @@ jobs:
     if: github.ref == 'refs/heads/master'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Install web-ext
-        run: npm install --global web-ext
+      - name: Install packages
+        run: npm install
 
-      - name: Run web-ext build
-        run: web-ext build
+      - name: Set up for Firefox
+        run: npm run prep-firefox
 
-      - name: Run web-ext sign
+      - name: Build Firefox extension
+        run: npx web-ext build
+
+      - name: Sign Firefox extension
         env:
           MOZILLA_API_KEY: ${{ secrets.MOZILLA_API_KEY }}
           MOZILLA_API_SECRET:  ${{ secrets.MOZILLA_API_SECRET }}
-        run: web-ext sign --api-key $MOZILLA_API_KEY --api-secret $MOZILLA_API_SECRET
+        run: npx web-ext sign --api-key $MOZILLA_API_KEY --api-secret $MOZILLA_API_SECRET
+
+        # The default .xpi name is a guid, which is not nice, so we rename it
+      - name: Rename the signed file
+        run: |
+          VERSION=$(jq -r .version manifest.json)
+          mv output/*.xpi output/aoc_time_logger-$VERSION-an+fx.xpi
 
       - name: Store artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: aoc_time_logger
-          path: web-ext-artifacts/aoc_time_logger-*-an+fx.xpi
+          name: aoc_time_logger_firefox
+          path: output/aoc_time_logger-*-an+fx.xpi
+          if-no-files-found: error
+
+  chrome:
+    name: Package for Chrome
+    runs-on: ubuntu-20.04
+    needs: test
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install packages
+        run: npm install
+
+      - name: Set up for Chrome
+        run: npm run prep-chrome
+
+      - name: Package Chrome extension
+        run: ./build-chrome.sh
+
+      - name: Store artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: aoc_time_logger_chrome
+          path: output/aoc_time_logger-*-chrome.zip
           if-no-files-found: error
