@@ -17,8 +17,8 @@
     "author": "Peter Trebaticky <github.10.trepe@spamgourmet.com>",
     "license": "MIT",
     "devDependencies": {
-        "eslint": "^8.33.0",
-        "web-ext": "^7.5.0"
+        "eslint": "^8.52.0",
+        "web-ext": "^7.8.0"
     },
     "webExt": {
         "artifactsDir": "output",
