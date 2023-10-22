@@ -42,7 +42,7 @@ const onGetStopData = (sendResponse) => {
         return;
     }
 
-    const part = (document.getElementsByClassName('share') === null ? 1 : 2);
+    const part = (document.getElementsByClassName('share').length === 0 ? 1 : 2);
     sendResponse({ userName, part });
 };
 
@@ -54,5 +54,5 @@ const getUserName = () => {
         return undefined;
     }
 
-    return element.textContent.trim();
+    return element.firstChild.textContent.trim();
 };
