@@ -7,7 +7,7 @@ browserOrChrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     'use strict';
 
     if (changeInfo.status == 'complete' && tab.url) {
-        const matches = tab.url.match(/\.com\/([0-9]{4})\/day\/([0-9]+)(\/answer)/);
+        const matches = tab.url.match(/\.com\/([0-9]{4})\/day\/([0-9]+)(\/answer)?/);
         if (matches) {
             const [, year, day, answer] = matches;
             if (!answer) {
