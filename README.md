@@ -1,7 +1,7 @@
 # aoc-plugin
   
 Plugin for Chrome, Firefox and Edge to log time when the adventofcode.com task was first opened (part 1 and part 2 separately)
-- using [aoc-redirect](https://github.com/matushorvath/aoc-redirect/)
+- using [aoc-bot](https://github.com/matushorvath/aoc-bot/)
 - in local storage
 
 ## Installation
